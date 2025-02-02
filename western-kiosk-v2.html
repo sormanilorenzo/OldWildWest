@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Old Wild West Kiosk</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(to bottom, #8b4513, #5c2c0c);
+            color: #e6d5ac;
+            border: 12px solid #3d2b1f;
+            border-style: double;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        body {
+            background: #2c1810;
+            font-family: 'Rye', cursive;
+            color: #e6d5ac;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zM22.343 0L13.857 8.485 15.272 9.9l8.485-8.485h-1.414zM32 0l-9.9 9.9 1.415 1.415L33.414 0H32zM0 0c0 1.414.89 2.738 2 3.414V2c0-1.105.607-2 1.5-2h.5c1.105 0 2 .607 2 1.5.793.276 1.628.276 2.421 0C8.605.607 9.5 0 10.605 0H11.4c1.105 0 2 .607 2 1.5.793.276 1.628.276 2.421 0C15.605.607 16.5 0 17.605 0h.8c1.105 0 2 .607 2 1.5.793.276 1.628.276 2.421 0C22.605.607 23.5 0 24.605 0h.8c1.105 0 2 .607 2 1.5.793.276 1.628.276 2.421 0C29.605.607 30.5 0 31.605 0h.8c1.105 0 2 .607 2 1.5.793.276 1.628.276 2.421 0C36.605.607 37.5 0 38.605 0h.8c1.105 0 2 .607 2 1.5.793.276 1.628.276 2.421 0C43.605.607 44.5 0 45.605 0h.8c1.105 0 2 .607 2 1.5.793.276 1.628.276 2.421 0C50.605.607 51.5 0 52.605 0h.8C54.51 0 55.405.607 55.405 1.5c.793.276 1.628.276 2.421 0C57.605.607 58.5 0 59.605 0H60v60H0V0z' fill='%23463225' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(to bottom, #8b4513, #5c2c0c);
+            color: #e6d5ac;
+            border: 12px solid #3d2b1f;
+            border-style: double;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 10l10 10H0L10 10zm0 0L0 0h20L10 10z' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: 4em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .menu-item {
+            background: linear-gradient(145deg, #3d2b1f, #2c1810);
+            border: 6px solid #8b4513;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 3px solid #8b4513;
+        }
+
+        .menu-item h3 {
+            color: #e6d5ac;
+            margin: 15px 0;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .price {
+            font-size: 1.8em;
+            color: #cd7f32;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            margin: 10px 0;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(to bottom, #8b4513, #654321);
+            color: #e6d5ac;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rye', cursive;
+            font-size: 1.1em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(to bottom, #654321, #4a3219);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            background: linear-gradient(to bottom, #8b4513, #654321);
+            color: #e6d5ac;
+            padding: 15px 30px;
+            border: 3px solid #3d2b1f;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rye', cursive;
+            font-size: 1.1em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .category-tab:hover {
+            background: linear-gradient(to bottom, #654321, #4a3219);
+            transform: translateY(-2px);
+        }
+
+        .category-tab.active {
+            background: linear-gradient(to bottom, #4a3219, #2c1810);
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .cart-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: linear-gradient(to right, #3d2b1f, #2c1810);
+            padding: 20px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+            transition: right 0.4s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .cart-panel.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8b4513;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #8b4513;
+            animation: slideIn 0.3s ease;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+            margin: 0 15px;
+        }
+
+        .cart-total {
+            font-size: 1.5em;
+            text-align: right;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #8b4513;
+        }
+
+        .cart-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(to bottom, #8b4513, #654321);
+            color: #e6d5ac;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .cart-button:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #cd7f32;
+            color: #fff;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #checkout-btn {
+            background: linear-gradient(to bottom, #cd7f32, #8b4513);
+            color: #e6d5ac;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            width: 100%;
+            font-family: 'Rye', cursive;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        #checkout-btn:hover {
+            background: linear-gradient(to bottom, #8b4513, #654321);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal.hidden {
+            display: none;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #3d2b1f, #2c1810);
+            padding: 30px;
+            border-radius: 15px;
+            border: 6px solid #8b4513;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8b4513;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e6d5ac;
+            font-size: 1.1em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #8b4513;
+            background: #2c1810;
+            color: #e6d5ac;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #cd7f32;
+            box-shadow: 0 0 10px rgba(205, 127, 50, 0.3);
+        }
+
+        #submit-order {
+            background: linear-gradient(to bottom, #cd7f32, #8b4513);
+            color: #e6d5ac;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            width: 100%;
+            font-family: 'Rye', cursive;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        #submit-order:hover {
+            background: linear-gradient(to bottom, #8b4513, #654321);
+            transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .category-tabs {
+                gap: 8px;
+            }
+
+            .category-tab {
+                padding: 10px 15px;
+                font-size: 0.9em;
+                width: calc(50% - 10px);
+                text-align: center;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 10px;
+            }
+
+            .menu-item {
+                padding: 15px;
+            }
+
+            .menu-item img {
+                height: 180px;
+            }
+
+            .cart-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .cart-button {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .form-group input {
+                padding: 10px;
+            }
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .category-tab {
+                padding: 12px 20px;
+            }
+
+            .cart-panel {
+                width: 350px;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .menu-item:hover {
+                transform: none;
+            }
+
+            .add-to-cart:hover {
+                transform: none;
+            }
+
+            .category-tab:hover {
+                transform: none;
+            }
+
+            .add-to-cart {
+                padding: 15px 25px; /* Larger touch target */
+            }
+
+            .category-tab {
+                padding: 15px 20px; /* Larger touch target */
+            }
+        }
+
+        /* Improved scrolling on mobile */
+        @media screen and (max-width: 768px) {
+            .cart-panel {
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .modal-content {
+                max-height: 90vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        /* Fix for iOS Safari 100vh issue */
+        @supports (-webkit-touch-callout: none) {
+            .cart-panel {
+                height: -webkit-fill-available;
+            }
+
+            .modal {
+                height: -webkit-fill-available;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="image/logo/oldwildwest.png" alt="Old Wild West Logo" class="logo">
+            <h1><i class="fas fa-hat-cowboy"></i>Old Wild West</h1>
+            <p>Il vero sapore del West</p>
+        </header>
+
+        <audio id="background-music" loop autoplay>
+            <source src="music/background.mp3" type="audio/mpeg">
+        </audio>
+
+        <div class="category-tabs">
+            <button class="category-tab active" data-category="burger">
+                <i class="fas fa-hamburger"></i> Burger
+            </button>
+            <button class="category-tab" data-category="carne">
+                <i class="fas fa-drumstick-bite"></i> Carne
+            </button>
+            <button class="category-tab" data-category="contorni">
+                <i class="fa-solid fa-circle"></i> Contorni
+            </button>
+            <button class="category-tab" data-category="bevande">
+                <i class="fas fa-glass-cheers"></i> Bevande
+            </button>
+            <button class="category-tab" data-category="dolci">
+                <i class="fa-solid fa-ice-cream"></i> Dolci
+            </button>
+        </div>
+
+        <!-- Burger -->
+        <div class="menu-grid" id="burger">
+            <div class="menu-item">
+                <img src="image/panini/dakota.jpg" alt="dakota"> 
+                <h3>Dakota Burger</h3> 
+                <p>Panino*, hamburger*, formaggio fuso e bacon, servito con patate* Fries e salsa OWW</p>
+                <div class="price">€10,00</div>
+                <button class="add-to-cart" data-name="Dakota Burger" data-price="10,00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/panini/americanburger.jpg" alt="americanburger"> 
+                <h3>American Burger</h3> 
+                <p>Panino con semi di sesamo*, hamburger*, formaggio Cheddar, bacon, pomodoro, insalata iceberg e salsa Ketchup, servito con patate* Fries e salsa OWW</p>
+                <div class="price">€10.80</div>
+                <button class="add-to-cart" data-name="American Burger" data-price="10.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/panini/americanbugerdouble.jpg" alt="americanbugerdouble"> 
+                <h3>American Burger Double</h3> 
+                <p>Panino con semi di sesamo*, hamburger* doppio, doppio formaggio Cheddar, doppio bacon, pomodoro, insalata iceberg e salsa Ketchup, servito con patate* Fries e salsa OWW</p>
+                <div class="price">€14,80</div>
+                <button class="add-to-cart" data-name="American Burger Double" data-price="14,80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/panini/bbqburger.jpg" alt="bbqburger"> 
+                <h3>BBQ Burger</h3> 
+                <p>Panino*, hamburger*, bacon, formaggio Cheddar, formaggio fuso, Onion Rings*, lattuga e salsa Barbecue, servito con patate* Fries e salsa Barbecue</p>
+                <div class="price">€11,60</div>
+                <button class="add-to-cart" data-name="BBQ Burger" data-price="11,60">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/panini/cowburger.jpg" alt="cowburger"> 
+                <h3>Cow Burger</h3> 
+                <p>Panino con semi di sesamo*, hamburger*, formaggio fuso, bacon, cipolla rossa caramellata, pomodoro, insalata iceberg e salsa Barbecue, servito con patate* Fries e salsa OWW</p>
+                <div class="price">€12,80</div>
+                <button class="add-to-cart" data-name="Cow Burger" data-price="12,80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/panini/torosedutodouble.jpg" alt="torosedutodouble"> 
+                <h3>Toro Seduto Double</h3> 
+                <p>Panino*, hamburger* doppio, doppio formaggio fuso, doppio bacon, servito con patate* Fries, cipolla rossa e salsa OWW</p>
+                <div class="price">€14,50</div>
+                <button class="add-to-cart" data-name="Toro Seduto Double" data-price="14,50">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/panini/crispybacon.jpg" alt="crispybacon"> 
+                <h3>Crispy Bacon</h3> 
+                <p>Panino*, cotoletta di pollo* panata, bacon, pomodoro, lattuga e salsa Caesar, servito con patate* Fries e salsa OWW</p>
+                <div class="price">€9,80</div>
+                <button class="add-to-cart" data-name="Crispy Bacon" data-price="9,80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/panini/raggiodisole.jpg" alt="raggiodisole"> 
+                <h3>Raggio di Sole</h3> 
+                <p>Panino*, cotoletta di pollo* panata, pomodoro, lattuga e maionese, servito con patate* Fries e salsa OWW</p>
+                <div class="price">€9,40</div>
+                <button class="add-to-cart" data-name="Raggio di Sole" data-price="9,40">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+        </div>
+
+        <!-- Carne -->
+        <div class="menu-grid hidden" id="carne">
+            <div class="menu-item">
+                <img src="image/carne/ribeye.jpg" alt="ribeye"> 
+                <h3>Rib-Eye Entrecôte</h3> 
+                <p>Entrecôte di manzo alla griglia servita con patate Premium Fries e salsa OWW.</p>
+                <div class="price">€16.90</div>
+                <button class="add-to-cart" data-name="Rib-Eye Entrecôte" data-price="16.90">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/carne/Cherokee-ribeye.jpg" alt="cherokee ribeye"> 
+                <h3>Cherokee Rib-Eye</h3> 
+                <p>Tagliata di entrecôte di manzo alla griglia con scaglie di Parmigiano Reggiano DOP su letto di rucola, servita con patate Premium Fries e salsa OWW.</p>
+                <div class="price">€17.50</div>
+                <button class="add-to-cart" data-name="Cherokee Rib-Eye" data-price="17.50">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/carne/picanaSteak.jpg" alt="picanha"> 
+                <h3>Picanha Steak</h3> 
+                <p>Tagliata di Picanha alla griglia, servita con verdure al forno e accompagnata da salsa Chimichurri homemade.</p>
+                <div class="price">€16.90</div>
+                <button class="add-to-cart" data-name="Picanha Steak" data-price="16.90">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/carne/grancanyonmix.jpg" alt="gran canyon mix"> 
+                <h3>Gran Canyon Mix</h3> 
+                <p>Il meglio delle nostre carni composto da tagliata di Picanha, entrecôte e scamone di manzo, condite con olio extravergine di oliva e fiocchi di sale su letto di spinacino, il tutto accompagnato da patate al forno e salsa Chimichurri homemade.</p>
+                <div class="price">€22.00</div>
+                <button class="add-to-cart" data-name="Gran Canyon Mix" data-price="22.00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/carne/classicFillet.jpg" alt="classic fillet"> 
+                <h3>Classic Fillet</h3> 
+                <p>Filetto di manzo alla griglia, servito con patate al forno.</p>
+                <div class="price">€19.50</div>
+                <button class="add-to-cart" data-name="Classic Fillet" data-price="19.50">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/carne/classicfilletmissisipi.jpg" alt="classic fillet mississippi"> 
+                <h3>Classic Fillet Mississippi</h3> 
+                <p>Tagliata di filetto di manzo alla griglia, servito con rucola, patate al forno e salsa Barbecue.</p>
+                <div class="price">€21.00</div>
+                <button class="add-to-cart" data-name="Classic Fillet Mississippi" data-price="21.00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/carne/rosemaryfillet.jpg" alt="rosemary fillet"> 
+                <h3>Rosemary Fillet</h3> 
+                <p>Tagliata di filetto di manzo alla griglia con polvere di bacon e olio aromatizzato al rosmarino su letto di rucola, servita con patate al forno.</p>
+                <div class="price">€21.50</div>
+                <button class="add-to-cart" data-name="Rosemary Fillet" data-price="21.50">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+        </div>
+
+        <!-- Contorni -->
+        <div class="menu-grid hidden" id="contorni">
+            <div class="menu-item">
+                <img src="image/contorni/french_fries.jpg" alt="fries"> 
+                <h3>Fries</h3> 
+                <p>Patate fritte e salsa OWW.</p>
+                <div class="price">€4.00</div>
+                <button class="add-to-cart" data-name="Fries" data-price="4.00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/contorni/premium_fries.jpg" alt="premium fries"> 
+                <h3>Premium Fries</h3> 
+                <p>Patate fritte originali e sfiziose e salsa OWW.</p>
+                <div class="price">€4.20</div>
+                <button class="add-to-cart" data-name="Premium Fries" data-price="4.20">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/contorni/patate_al_forno.jpg" alt="patate al forno"> 
+                <h3>Patate al forno</h3> 
+                <p>Aromatizzate al rosmarino.</p>
+                <div class="price">€4.00</div>
+                <button class="add-to-cart" data-name="Patate al forno" data-price="4.00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/contorni/frijoles.jpg" alt="frijoles"> 
+                <h3>Frijoles</h3> 
+                <p>Fagioli neri con bacon, cipolla e salsa Barbecue.</p>
+                <div class="price">€5.00</div>
+                <button class="add-to-cart" data-name="Frijoles" data-price="5.00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/contorni/colorado_grande.jpg" alt="colorado grande"> 
+                <h3>Colorado Grande</h3> 
+                <p>Insalata iceberg, cappuccio rosso condito, pomodorini datterino e carote.</p>
+                <div class="price">€4.80</div>
+                <button class="add-to-cart" data-name="Colorado Grande" data-price="4.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/contorni/colorado_baby.jpg" alt="colorado piccola"> 
+                <h3>Colorado Piccola</h3> 
+                <p>Insalata iceberg, cappuccio rosso condito, pomodorini datterino e carote.</p>
+                <div class="price">€3.50</div>
+                <button class="add-to-cart" data-name="Colorado Piccola" data-price="3.50">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/contorni/verdure_al_forno.jpg" alt="verdure al forno"> 
+                <h3>Verdure al forno</h3> 
+                <p>Zucchine, carote, peperoni e patate al rosmarino.</p>
+                <div class="price">€5.00</div>
+                <button class="add-to-cart" data-name="Verdure al forno" data-price="5.00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/contorni/fagiolini.jpg" alt="fagiolini"> 
+                <h3>Fagiolini</h3> 
+                <p>Fagiolini cotti al vapore.</p>
+                <div class="price">€4.50</div>
+                <button class="add-to-cart" data-name="Fagiolini" data-price="4.50">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/contorni/riso_nero.jpg" alt="riso nero"> 
+                <h3>Riso Nero</h3> 
+                <p>Riso nero condito.</p>
+                <div class="price">€4.00</div>
+                <button class="add-to-cart" data-name="Riso Nero" data-price="4.00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>            
+        </div>
+
+        <!-- Bevande -->
+        <div class="menu-grid hidden" id="bevande">
+            <div class="menu-item">
+                <img src="image/bevande/birra.png" alt="birra">
+                <h3>Birra del Saloon</h3>
+                <p>Birra artigianale alla spina 0.4L</p>
+                <div class="price">€5.99</div>
+                <button class="add-to-cart" data-name="Birra del Saloon" data-price="5.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/bevande/cocacola.png" alt="Coca Cola">
+                <h3>Coca Cola</h3>
+                <p>Coca Cola 0.4L</p>
+                <div class="price">€3.99</div>
+                <button class="add-to-cart" data-name="Coca Cola" data-price="3.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/bevande/cocacola0zucc.png" alt="Coca Cola  0 Zuccheri">
+                <h3>Coca Cola 0 zuccheri</h3>
+                <p>Coca Cola 0.4L</p>
+                <div class="price">€3.99</div>
+                <button class="add-to-cart" data-name="Coca Cola 0 zuccheri" data-price="3.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/bevande/cocacola0caf.png" alt="Coca Cola  0 Caffeina">
+                <h3>Coca Cola 0 caffeina</h3>
+                <p>Coca Cola 0.4L</p>
+                <div class="price">€3.99</div>
+                <button class="add-to-cart" data-name="Coca Cola 0 caffeina" data-price="3.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/bevande/fanta.png" alt="Fanta">
+                <h3>Fanta</h3>
+                <p>Fanta 0.4L</p>
+                <div class="price">€3.99</div>
+                <button class="add-to-cart" data-name="Fanta" data-price="3.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/bevande/fuzetealimone.png" alt="Fuzetea al Limone">
+                <h3>Fuzetea al Limone</h3>
+                <p>Fuzetea al Limone 0.4L</p>
+                <div class="price">€3.99</div>
+                <button class="add-to-cart" data-name="Fuzetea al Limone" data-price="3.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/bevande/fuzeteapesca.png" alt="Fuzetea alla Pesca">
+                <h3>Fuzetea alla Pesca</h3>
+                <p>Fuzetea alla Pesca 0.4L</p>
+                <div class="price">€3.99</div>
+                <button class="add-to-cart" data-name="Fuzetea alla Pesca" data-price="3.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/bevande/sprite.png" alt="Sprite">
+                <h3>Sprite</h3>
+                <p>Sprite 0.4L</p>
+                <div class="price">€3.99</div>
+                <button class="add-to-cart" data-name="Sprite" data-price="3.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/bevande/succofruttaace.png" alt="Succo di Frutta ACE">
+                <h3>Succo di Frutta ACE</h3>
+                <p>Succo di Frutta ACE 0.4L</p>
+                <div class="price">€4.99</div>
+                <button class="add-to-cart" data-name="Succo di Frutta ACE" data-price="4.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/bevande/succofruttapera.png" alt="Succo di Frutta Pera">
+                <h3>Succo di Frutta Pera</h3>
+                <p>Succo di Frutta Pera 0.4L</p>
+                <div class="price">€4.99</div>
+                <button class="add-to-cart" data-name="Succo di Frutta Pera" data-price="4.99">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+        </div>
+
+        <!-- Dolci -->
+        <div class="menu-grid hidden" id="dolci">
+            <div class="menu-item">
+                <img src="image/dolci/brownie.jpg" alt="brownie"> 
+                <h3>Brownie</h3> 
+                <p>Torta al cioccolato con noci pecan, accompagnata da gelato al fiordilatte, frutti di bosco in salsa e topping al cioccolato.</p>
+                <div class="price">€5.50</div>
+                <button class="add-to-cart" data-name="Brownie" data-price="5.50">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/dolci/souffle.jpg" alt="souffle due lune"> 
+                <h3>Soufflé Due Lune</h3> 
+                <p>Soufflé al cioccolato, gelato al fiordilatte, cioccolato croccante, topping al cioccolato e granella di nocciole.</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Soufflé Due Lune" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/dolci/tiramisu.jpg" alt="tiramisu"> 
+                <h3>Tiramisù</h3> 
+                <p>Tiramisù con polvere di cacao.</p>
+                <div class="price">€6.00</div>
+                <button class="add-to-cart" data-name="Tiramisù" data-price="6.00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/dolci/cheesecakenutella.jpg" alt="cheesecake nutella"> 
+                <h3>Cheesecake con Nutella</h3> 
+                <p>Cremosa Cheesecake, guarnita con Nutella® e granella di nocciole, con panna montata.</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Cheesecake con Nutella" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/dolci/cheesecakefdb.jpg" alt="cheesecake frutti di bosco"> 
+                <h3>Cheesecake Frutti di Bosco</h3> 
+                <p>Cremosa Cheesecake, guarnita con frutti di bosco in salsa, con panna montata.</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Cheesecake Frutti di Bosco" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/dolci/cheesecakepistacchio.jpg" alt="cheesecake pistacchio"> 
+                <h3>Cheesecake con Pistacchio</h3> 
+                <p>Cremosa Cheesecake*, guarnita con crema al pistacchio, topping al cioccolato, granella di pistacchio, con panna montata</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Cheesecake con Pistacchio" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/dolci/pancakefdb.jpg" alt="pancake frutti di bosco"> 
+                <h3>Pancake Frutti di Bosco</h3> 
+                <p>Due soffici pancakes* farciti con frutti di bosco* in salsa, sciroppo d'acero, con panna montata</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Pancake Frutti di Bosco" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/dolci/pancakenutella.jpg" alt="pancake nutella"> 
+                <h3>Pancake Nutella</h3> 
+                <p>Due soffici pancakes* farciti con Nutella® e gelato al fiordilatte, ricoperti da topping alle arachidi, caramello e arachidi, con panna montata.</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Pancake Pistacchio" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/dolci/pancakepistacchio.jpg" alt="pancake pistacchio"> 
+                <h3>Pancake Pistacchio</h3> 
+                <p>Due soffici pancakes* farciti con crema al pistacchio, topping al cioccolato e granella di pistacchio, con panna montata.</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Pancake Pistacchio" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/dolci/coppaalaska.jpeg" alt="coppa alaska"> 
+                <h3>Coppa Alaska</h3> 
+                <p>Gelato al fiordilatte con Nutella®, cioccolato croccante, panna montata, topping al cioccolato e granella di nocciole.</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Coppa Alaska" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/dolci/coppakitkat.jpg" alt="coppa kitkat"> 
+                <h3>Coppa KitKat</h3> 
+                <p>Gelato al fiordilatte con crema e crumble KitKat®, panna montata e cacao.</p>
+                <div class="price">€6.00</div>
+                <button class="add-to-cart" data-name="Coppa con KitKat" data-price="6.00">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/dolci/coppapistacchio.jpeg" alt="coppa pistacchio"> 
+                <h3>Coppa Pistacchio</h3> 
+                <p>Gelato al fiordilatte con crema al pistacchio, topping al cioccolato, crumble di biscotto Oreo®,  panna montata, cacao e granella di pistacchio</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Coppa Alaska" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/dolci/coppettabaileys.jpeg" alt="coppetta baileys"> 
+                <h3>Coppetta Baileys</h3> 
+                <p>Gelato al cioccolato, Baileys® Irish Cream , panna montata, topping al cioccolato, granella di nocciole e cacao</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Coppetta Baileys" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/dolci/coppettacaramello.jpeg" alt="coppetta caramello"> 
+                <h3>Coppetta caramello</h3> 
+                <p>Gelato al fiordilatte con topping al caramello, panna montata e arachidi </p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Coppetta Caramello" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/dolci/coppettaoreo.jpeg" alt="coppetta oreo"> 
+                <h3>Coppetta Oreo</h3> 
+                <p>Gelato al fiordilatte con crema di nocciole, crumble di biscotti Oreo®, panna montata, granella di nocciole, topping al cioccolato e biscotto Oreo®</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Coppetta Oreo" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+
+            <div class="menu-item">
+                <img src="image/dolci/coppettavenchi.jpeg" alt="coppetta venchi"> 
+                <h3>Coppetta Venchi</h3> 
+                <p>Gelato al fiordilatte, panna montata, cioccolato croccante, topping al cioccolato e Cuba Rhum Venchi®</p>
+                <div class="price">€5.80</div>
+                <button class="add-to-cart" data-name="Coppetta Venchi" data-price="5.80">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+            
+            <div class="menu-item">
+                <img src="image/dolci/sorbetto.jpeg" alt="sorbetto"> 
+                <h3>Sorbetto</h3> 
+                <p>Sorbetto alla frutta.</p>
+                <div class="price">€3.50</div>
+                <button class="add-to-cart" data-name="Sorbetto" data-price="3.50">
+                    <i class="fas fa-plus"></i> Aggiungi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-button">
+        <i class="fas fa-shopping-cart fa-2x"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="cart-panel">
+        <div class="cart-header">
+            <h2>Il tuo ordine</h2>
+            <i class="fas fa-times fa-2x" style="cursor: pointer;"></i>
+        </div>
+        <div class="cart-items">
+            <!-- Gli items del carrello verranno inseriti qui dinamicamente -->
+        </div>
+        <div class="cart-total">
+            Totale: €0.00
+        </div>
+        <button id="checkout-btn">
+            Procedi all'ordine
+        </button>
+    </div>
+
+    <!-- Modal per il checkout -->
+    <div id="checkout-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Completa il tuo ordine</h2>
+                <i class="fas fa-times fa-2x close-modal" style="cursor: pointer;"></i>
+            </div>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Cognome:</label>
+                    <input type="text" id="surname" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefono:</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <button type="submit" id="submit-order">
+                    <i class="fas fa-paper-plane"></i> Invia Ordinazione
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Gestione delle categorie
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const menuGrids = document.querySelectorAll('.menu-grid');
+
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Rimuovi active da tutti i tab
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                // Aggiungi active al tab cliccato
+                tab.classList.add('active');
+
+                // Nascondi tutte le griglie
+                menuGrids.forEach(grid => grid.classList.add('hidden'));
+                // Mostra la griglia corrispondente
+                const categoryId = tab.getAttribute('data-category');
+                document.getElementById(categoryId).classList.remove('hidden');
+            });
+        });
+
+        // Gestione del carrello
+        let cart = [];
+        const cartButton = document.querySelector('.cart-button');
+        const cartPanel = document.querySelector('.cart-panel');
+        const cartItems = document.querySelector('.cart-items');
+        const cartTotal = document.querySelector('.cart-total');
+        const cartCount = document.querySelector('.cart-count');
+        const closeCart = document.querySelector('.fa-times');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        // Apri/Chiudi carrello
+        cartButton.addEventListener('click', () => {
+            cartPanel.classList.add('open');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartPanel.classList.remove('open');
+        });
+
+        // Aggiungi al carrello
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+                
+                // Cerca se l'item è già nel carrello
+                const existingItem = cart.find(item => item.name === name);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        name: name,
+                        price: price,
+                        quantity: 1
+                    });
+                }
+
+                updateCart();
+                
+                // Feedback visivo
+                button.innerHTML = '<i class="fas fa-check"></i> Aggiunto';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-plus"></i> Aggiungi';
+                }, 1000);
+            });
+        });
+
+        // Aggiorna il carrello
+        function updateCart() {
+            // Aggiorna il contatore
+            cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+
+            // Aggiorna gli items nel carrello
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <span>${item.name}</span>
+                    <div class="cart-item-info">
+                        <span>x${item.quantity}</span>
+                    </div>
+                    <span>€${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            `).join('');
+
+            // Aggiorna il totale
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `Totale: €${total.toFixed(2)}`;
+        }
+
+        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1335358655964381205/qvGO_cDTRE1xGwNEhAQ0oPkgveAflDdrMhZ4HaKTbi2MJ163HAt4zFS-LJPyy6xq0N93'; // Sostituisci con il tuo URL webhook
+        const modal = document.getElementById('checkout-modal');
+        const closeModal = document.querySelector('.close-modal');
+        const checkoutForm = document.getElementById('checkout-form');
+
+        // Modifica l'evento click del checkout button
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length > 0) {
+                modal.classList.remove('hidden');
+                cartPanel.classList.remove('open');
+            } else {
+                alert('Il carrello è vuoto!');
+            }
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        checkoutForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+            const phone = document.getElementById('phone').value;
+
+            // Crea il contenuto dell'ordine per il webhook
+            const orderItems = cart.map(item => 
+                `${item.name} x${item.quantity} - €${(item.price * item.quantity).toFixed(2)}`
+            ).join('\n');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            const webhookData = {
+                embeds: [{
+                    title: "🤠 Nuovo Ordine Old Wild West Kiosk",
+                    color: 0x8b4513,
+                    fields: [
+                        {
+                            name: "👤 Cliente",
+                            value: `${name} ${surname}\n📞 ${phone}`,
+                            inline: true
+                        },
+                        {
+                            name: "🍔 Ordine",
+                            value: orderItems,
+                            inline: false
+                        },
+                        {
+                            name: "💰 Totale",
+                            value: `€${total.toFixed(2)}`,
+                            inline: true
+                        }
+                    ],
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(webhookData)
+                });
+
+                if (response.ok) {
+                    alert('Ordine inviato con successo!');
+                    cart = [];
+                    updateCart();
+                    modal.classList.add('hidden');
+                    checkoutForm.reset();
+                } else {
+                    throw new Error('Errore nell\'invio dell\'ordine');
+                }
+            } catch (error) {
+                alert('Errore nell\'invio dell\'ordine. Riprova più tardi.');
+                console.error('Errore:', error);
+            }
+        });
+
+                // Background Music Setup
+                const audio = document.getElementById('background-music');
+        
+        // Set initial volume and auto-play
+        window.addEventListener('load', () => {
+            audio.volume = 0.050; // Set volume to 0.10%
+            audio.play().catch(() => {
+                console.log('Auto-play was prevented by browser policy. User interaction required.');
+            });
+        });
+
+        // Ensure music plays when user interacts with the page
+        document.addEventListener('click', () => {
+            audio.play().catch(() => {});
+        }, { once: true });
+    </script>
+</body>
+</html>
